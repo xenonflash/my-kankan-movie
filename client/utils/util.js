@@ -39,4 +39,21 @@ var showModel = (title, content) => {
     })
 }
 
+var makeGet = (url, data) => {
+  return new Promise((resolve, reject) => {
+    qncloud.request({
+      url,
+      data,
+      success: res => {
+        if (res && res.statusCode === 200) {
+          resolve(res.data)
+        } else {
+          reject(res.errorMsg)
+        }
+      },
+      fail:reject
+    })
+  })
+}
+
 module.exports = { formatTime, showBusy, showSuccess, showModel }

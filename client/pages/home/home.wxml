@@ -1,2 +1,17 @@
 <!--pages/home/home.wxml-->
-<text>pages/home/home.wxml</text>
+<view class="container">
+  <image class="hot-movie-image" src="{{hotMovie.image}}" mode="aspectFit"></image>
+  <view class="movie-name">{{hotMovie.title}}</view>
+  <!-- 推荐信息 -->
+  <view class="referrer-info">
+    <!-- <image class="referrer-avatar" src="{{referrerInfo.avatar}}"></image> -->
+    <text>{{referrerInfo.name}}</text>
+    <text>给你推荐了一部电影</text>
+  </view>
+
+  <view class="bottom-bar">
+    <navigator url="/pages/movie-list/movie-list">热门</navigator>
+    <navigator url="/pages/user/user">我的</navigator>
+  </view>
+</view>
+

@@ -1,7 +1,23 @@
 /**app.wxss**/
 .container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  box-sizing: border-box;
+  padding: 50rpx;
+  text-align: center
 } 
+
+/* 底部按钮组成的操作条 */
+.bottom-bar{
+  width: 100%;
+  display: flex;
+  left:0;
+  position: fixed;
+  bottom: 0;
+  border-top: 1px solid #ccc;
+  line-height:80rpx
+}
+.bottom-bar navigator{
+  display: block;
+  flex:1;
+  border:0;
+  background: #fff;
+  outline: 0
+}

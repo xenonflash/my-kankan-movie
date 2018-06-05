@@ -1,2 +1,16 @@
 <!--pages/movie-list/movie-list.wxml-->
-<text>pages/movie-list/movie-list.wxml</text>
+<view class="container">
+  <view
+    class="movie-item"
+    wx:for="{{movieList}}"
+    wx:key="{{index}}"
+    bindtap="toDetail"
+    data-id="{{item.id}}"
+  >
+    <image class="movie-item-image" src="{{item.image}}"></image>
+    <view class="movie-item-info">
+      <view class="movie-title">{{item.title}}</view>
+      <view class="movie-cate">{{item.category}}</view>
+    </view>
+  </view>
+</view>

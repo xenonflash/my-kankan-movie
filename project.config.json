@@ -8,5 +8,31 @@
 	},
 	"appid": "wxbe48e5f64036e83c",
 	"projectname": "kankan-movie",
-	"condition": {}
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"list": []
+		},
+		"miniprogram": {
+			"current": 0,
+			"list": [
+				{
+					"id": -1,
+					"name": "movie-list",
+					"pathName": "pages/movie-list/movie-list"
+				}
+			]
+		}
+	}
 }

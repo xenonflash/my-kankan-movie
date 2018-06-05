@@ -1,3 +1,5 @@
+const qcloud = require('../../vendor/wafer2-client-sdk/index.js')
+
 // pages/movie-list/movie-list.js
 Page({
 
@@ -5,37 +7,55 @@ Page({
    * 页面的初始数据
    */
   data: {
-  
+    movieList: []
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    qcloud.request({
+      url: "https://f3l9mccl.qcloud.la/mpapi/movie-list",
+      success: res => {
+        this.setData({
+          movieList: res.data.data
+        })
+      },
+      fail: err => {
+        err
+      }
+    })
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-  
+    
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+    wx.setNavigationBarTitle({
+      title: '热门电影',
+    })
   },
 
+  toDetail(e) {
+    const id = e.currentTarget.dataset.id
+    wx.navigateTo({
+      url: `/pages/movie-detail/movie-detail?id=${id}`,
+    })
+  },
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
   
   },
-
+  
   /**
    * 生命周期函数--监听页面卸载
    */
@@ -63,4 +83,5 @@ Page({
   onShareAppMessage: function () {
   
   }
+
 })

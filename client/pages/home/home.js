@@ -6,7 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-  
+    hotMovie:null
   },
 
   /**
@@ -17,6 +17,9 @@ Page({
       url: "https://f3l9mccl.qcloud.la/mpapi/hello",
       success: res => {
         console.log(res)
+        this.setData({
+          hotMovie:res.data.data[0]
+        })
       },
       fail: err => {
         err
@@ -35,7 +38,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+    wx.setNavigationBarTitle({
+      title: '看看侃侃电影',
+    })
   },
 
   /**

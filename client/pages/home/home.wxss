@@ -1,1 +1,7 @@
 /* pages/home/home.wxss */
+.container{
+  padding: 50rpx
+}
+.hot-movie-image{
+  height:800rpx
+}

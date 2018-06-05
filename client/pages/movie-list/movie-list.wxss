@@ -1,1 +1,26 @@
 /* pages/movie-list/movie-list.wxss */
+.movie-item{
+  height: 280rpx;
+  border: 1px solid #ddd;
+  margin-bottom: 50rpx;
+  box-shadow: 0 0 40rpx #ddd;
+  display:flex;
+  align-items:center
+}
+.movie-item-image{
+  width:200rpx;
+  height:100%;
+}
+.movie-item-info{
+  text-align: left;
+  padding: 30rpx
+}
+.movie-title{
+  font-size: 30rpx;
+  font-weight:bold;
+  margin-bottom: 30rpx
+}
+.movie-cate{
+  font-size: 26rpx;
+  color: #666
+}
