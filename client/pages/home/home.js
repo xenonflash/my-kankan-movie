@@ -13,7 +13,15 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-        
+    qcloud.request({
+      url: "https://f3l9mccl.qcloud.la/mpapi/hello",
+      success: res => {
+        console.log(res)
+      },
+      fail: err => {
+        err
+      }
+    })
   },
 
   /**
