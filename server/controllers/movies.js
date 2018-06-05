@@ -1,7 +1,10 @@
+const DB = require('../utils/db.js')
+
 
 // 登录授权接口
 module.exports = {
   hello: async (ctx, next) => {
-    ctx.state.data = 'hello'
+    const data = await DB.query("SELECT * FROM movies;")
+    ctx.state.data = data
   }
 }
