@@ -1,2 +1,16 @@
 <!--pages/movie-detail/movie-detail.wxml-->
-<text>pages/movie-detail/movie-detail.wxml</text>
+<view class="container">
+  <image class="movie-detail-image" src="{{movieDetail.image}}"></image>
+  <view>{{movieDetail.title}}</view>
+  <view>{{movieDetail.description}}</view>
+
+  <view class="button-group">
+    <button bindTap="reviewComment">查看影评</button>
+    <button bindtap="addComment">添加影评</button>
+  </view>
+</view>
+<action-sheet hidden="{{actionSheetHidden}}" bindchange="actionSheetClose">
+  <action-sheet-item class="action-item" bindtap="onAction" data-name="text">文字</action-sheet-item>
+  <action-sheet-item class="action-item" bindtap="onAction" data-name="audio">音频</action-sheet-item>
+  <action-sheet-cancel class="cancel">取消</action-sheet-cancel>
+</action-sheet>

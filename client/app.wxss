@@ -1,7 +1,8 @@
 /**app.wxss**/
 .container {
   padding: 50rpx;
-  text-align: center
+  text-align: center;
+  background: #eee
 } 
 
 /* 底部按钮组成的操作条 */

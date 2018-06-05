@@ -7,7 +7,8 @@ Page({
    */
   data: {
     movieId: null,
-    movieDetail: {}
+    movieDetail: {},
+    actionSheetHidden: true
   },
 
   /**
@@ -35,6 +36,24 @@ Page({
       }
     })
   },
+  addComment() {
+    this.setData({
+      actionSheetHidden: !this.data.actionSheetHidden
+    })
+  },
+  actionSheetClose(e) {
+    this.setData({
+      actionSheetHidden: true
+    })
+  },
+  onAction(e) {
+    const link = e.currentTarget.dataset.name
+    const { title, image } = this.data.movieDetail
+    wx.navigateTo({
+      url: `/pages/comment-edit/comment-edit?tp=${link}&img=${image}&title=${title}`,
+    })
+  },
+
   /**
    * 生命周期函数--监听页面显示
    */

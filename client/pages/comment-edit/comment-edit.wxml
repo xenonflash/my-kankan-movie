@@ -1,0 +1,15 @@
+<!--pages/comment-edit/comment-edit.wxml-->
+<view class="container">
+  <view class="edit-wrapper">
+    <image class="movie-img" src="{{img}}"></image>
+    <view class="movie-title">{{title}}</view>
+    <textarea
+      wx:if="{{tp === 'text'}}"
+      value="{{textContent}}"
+      bindchange="handleInput"
+      placeholder="请输入内容"
+    ></textarea>
+    <button wx:if="{{tp === 'audio'}}">录音</button>
+  </view>
+</view>
+<button type="primary" bindtap="gotoPreview">完成</button>

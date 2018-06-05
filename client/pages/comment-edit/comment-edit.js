@@ -1,24 +1,29 @@
-// pages/comment-detail/comment-detail.js
+// pages/comment-edit/comment-edit.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    textContent: "sdfdsf"
+    img: 'about:blank',
+    title:'',
+    tp: ''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    const { img, title, tp } = options
+    this.setData({
+      img, title, tp
+    })
   },
-
-  handleInput(e) {
-    console.log(e)
+  gotoPreview() {
+    wx.navigateTo({
+      url: '/pages/comment-preview/comment-preview',
+    })
   },
-
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -67,6 +72,4 @@ Page({
   onShareAppMessage: function () {
   
   }
-
-  
 })

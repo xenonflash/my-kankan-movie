@@ -14,7 +14,7 @@ Page({
    */
   onLoad: function (options) {
     qcloud.request({
-      url: "https://f3l9mccl.qcloud.la/mpapi/hello",
+      url: "https://f3l9mccl.qcloud.la/mpapi/movie-list",
       success: res => {
         console.log(res)
         this.setData({
