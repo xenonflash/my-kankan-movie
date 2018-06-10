@@ -9,6 +9,7 @@
 	"appid": "wxbe48e5f64036e83c",
 	"projectname": "kankan-movie",
 	"compileType": "miniprogram",
+	"libVersion": "2.0.9",
 	"condition": {
 		"search": {
 			"current": -1,

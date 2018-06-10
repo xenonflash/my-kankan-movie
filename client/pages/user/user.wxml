@@ -1,6 +1,6 @@
 <!--pages/user/user.wxml-->
 <view class="user-center">
-  <button wx:if="!userInfo" open-type='getuserInfo'>点击登录</button>
+  <button wx:if="!userInfo" open-type='getUserInfo' bindgetuserinfo='onLogin'>点击登录</button>
   <view class="user-fav">
     <view>收藏的影评</view>
     <view class="fav-comment-list">

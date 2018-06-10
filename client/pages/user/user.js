@@ -1,3 +1,4 @@
+const app = getApp()
 // pages/user/user.js
 Page({
 
@@ -5,7 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    userInfo: {}
+    userInfo: null
   },
 
   /**
@@ -19,14 +20,28 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-  
+    
+  },
+  onLogin() {
+    debugger
+    app.login({
+      success: res => {
+        this.setData({
+          userInfo: res.userInfo
+        })
+      }
+    })
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+    app.checkSession({
+      success: res => {
+        this.setData({ userInfo: res.userInfo })
+      }
+    })
   },
 
   /**
