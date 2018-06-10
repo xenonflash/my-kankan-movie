@@ -40,7 +40,10 @@ Page({
       url: config.service.comment,
       method: 'PUT',
       data: {
-        movieId, text, tp, audio
+        movie_id: movieId,
+        text,
+        tp,
+        audio_url: audio
       },
       success: res => {
         wx.showModal({
