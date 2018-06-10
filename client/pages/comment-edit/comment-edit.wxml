@@ -9,7 +9,9 @@
       bindchange="handleInput"
       placeholder="请输入内容"
     ></textarea>
-    <button wx:if="{{tp === 'audio'}}">录音</button>
+    <button wx:if="{{tp === 'audio'}}" type="{{recording?'warn':'primary'}}" bindtap='toggleRecord'>
+    {{recording? '点击停止录音' : '点击开始录音'}}
+    </button>
   </view>
 </view>
 <button class="bottom-btn" type="primary" bindtap="gotoPreview">完成</button>

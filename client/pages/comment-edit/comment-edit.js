@@ -7,7 +7,10 @@ Page({
   data: {
     img: 'about:blank',
     title:'',
-    tp: ''
+    tp: '',
+    text: '',
+    audio: '',
+    recording: false
   },
 
   /**
@@ -20,8 +23,39 @@ Page({
     })
   },
   gotoPreview() {
+    const { img, title, tp, text, audio } = this.data
+    let url = `/pages/comment-preview/comment-preview?cover=${img}&title=${title}`
+    if (tp === 'text') {
+      url += `&text=${text}`
+    } else if(this.data.tp === 'audio') {
+      url +=`&audio=${audio}`
+    }
     wx.navigateTo({
-      url: '/pages/comment-preview/comment-preview',
+      url
+    })
+  },
+  toggleRecord() {
+    if (this.data.recording) {
+      wx.stopRecord()
+    } else {
+      wx.startRecord({
+        success: res => {
+          var tempFilePath = res.tempFilePath
+          this.setData({
+            audio: tempFilePath
+          })
+        },
+        fail: function (res) {
+          //录音失败
+          wx.showModal({
+            title: '提示',
+            content: '录音失败',
+          })
+        }
+      })
+    }
+    this.setData({
+      recording: !this.data.recording
     })
   },
   /**
@@ -35,14 +69,14 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+    this.data.recording = false
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-  
+    this.data.recording = false
   },
 
   /**
