@@ -1,4 +1,5 @@
 const qcloud = require('../../vendor/wafer2-client-sdk/index.js')
+const config = require('../../config.js')
 // pages/home/home.js
 Page({
 
@@ -14,7 +15,8 @@ Page({
    */
   onLoad: function (options) {
     qcloud.request({
-      url: "https://f3l9mccl.qcloud.la/mpapi/movie-list",
+      url: config.service.movie,
+      method: 'GET',
       success: res => {
         console.log(res)
         this.setData({

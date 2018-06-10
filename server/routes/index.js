@@ -32,7 +32,12 @@ router.get('/message', controllers.message.get)
 // POST 用来处理微信转发过来的客服消息
 router.post('/message', controllers.message.post)
 router.post('/message', controllers.message.post)
-router.get('/movie-list', controllers.movies.list)
-router.get('/movie-list/:id', controllers.movies.detail)
+
+// 电影相关
+router.get('/movie', controllers.movies.list)
+router.get('/movie/:id', controllers.movies.detail)
+
+// 个人收藏夹
+router.get('/fav', validationMiddleware, controllers.favourite.list)
 
 module.exports = router

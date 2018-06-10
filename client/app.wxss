@@ -2,7 +2,7 @@
 .container {
   padding: 50rpx;
   text-align: center;
-  background: #eee;
+  background: rgb(250,250,255);
   min-height: 1090rpx
 } 
 
@@ -14,17 +14,35 @@
   position: fixed;
   bottom: 0;
   border-top: 1px solid #ccc;
-  line-height:80rpx
+  line-height:90rpx
 }
 .bottom-bar navigator{
   display: block;
   flex:1;
   border:0;
   background: #fff;
-  outline: 0
+  outline: 0;
+  font-size: 35rpx;
+  color: lightslategray;
 }
 
 button{
   font-size:35rpx;
   color: lightslategray
+}
+
+.avatar{
+  width: 60rpx;
+  height: 60rpx;
+  border: 1px solid #ddd;
+  background: #ddd;
+  border-radius: 50%;
+  vertical-align: middle;
+  margin-right: 30rpx
+}
+.bottom-btn{
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  left: 0
 }

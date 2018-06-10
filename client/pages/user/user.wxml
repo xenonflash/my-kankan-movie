@@ -1,15 +1,22 @@
 <!--pages/user/user.wxml-->
-<view class="user-center">
-  <button wx:if="!userInfo" open-type='getUserInfo' bindgetuserinfo='onLogin'>点击登录</button>
-  <view class="user-fav">
+<view class="user-center container">
+  <button wx:if="{{!userInfo}}" open-type='getUserInfo' bindgetuserinfo='onLogin'>点击登录</button>
+  <view wx:else class="user-fav">
+    <view class="user-info">
+      <image class="avatar" src="{{userInfo.avatarUrl}}"></image>
+      <text>{{userInfo.nickName}}</text>
+      欢迎回来
+    </view>
     <view>收藏的影评</view>
-    <view class="fav-comment-list">
+    <view class="fav-list">
       <view class="fav-item" wx:for="{{favList}}">
-        <image src="item.cover"></image>
+        <image class="movie-cover" src="{{item.cover}}" mode="widthFit"></image>
         <view class="comment-content">
           <view>{{item.title}}</view>
-          <button wx:if="{{item.type=='audio'}}">{{item.audioLength}}s</button>
-          <view wx:if="{{item.typ=='text'}}">{{item.text}}</view>
+          <view class="comment-detail">
+            <button wx:if="{{item.type=='audio'}}">{{item.audioLength}}s</button>
+            <view class="comment-text" wx:if="{{item.type=='text'}}">{{item.text}}</view>
+          </view>
           <view>
             <image class="avatar" src="{{item.avatar}}"></image>
             <text>{{item.userName}}</text>
@@ -18,4 +25,7 @@
       </view>
     </view>
   </view>
+  <navigator class="bottom-btn" url='/pages/home/home'>
+    <button>回到首页</button>
+  </navigator>
 </view>

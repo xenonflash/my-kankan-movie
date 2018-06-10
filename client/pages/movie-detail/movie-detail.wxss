@@ -1,1 +1,10 @@
 /* pages/movie-detail/movie-detail.wxss */
+.btns{
+  margin-top: 40rpx;
+  display: flex
+}
+.movie-desc{
+  font-size: 30rpx;
+  color: lightslategrey;
+  margin: 20rpx;
+}

@@ -1,5 +1,5 @@
 const qcloud = require('../../vendor/wafer2-client-sdk/index.js')
-
+const config = require('../../config.js')
 // pages/movie-list/movie-list.js
 Page({
 
@@ -14,8 +14,12 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.getMovieList()
+  },
+  getMovieList(cb) {
     qcloud.request({
-      url: "https://f3l9mccl.qcloud.la/mpapi/movie-list",
+      url: config.service.movie,
+      method: 'GET',
       success: res => {
         this.setData({
           movieList: res.data.data
@@ -23,10 +27,12 @@ Page({
       },
       fail: err => {
         err
+      },
+      complete: () => {
+        cb && cb()
       }
     })
   },
-
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -67,7 +73,9 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-  
+    this.getMovieList(() => {
+      wx.stopPullDownRefresh()
+    })
   },
 
   /**

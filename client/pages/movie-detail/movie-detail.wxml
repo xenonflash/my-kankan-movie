@@ -1,11 +1,11 @@
 <!--pages/movie-detail/movie-detail.wxml-->
 <view class="container">
-  <image class="movie-detail-image" src="{{movieDetail.image}}"></image>
-  <view>{{movieDetail.title}}</view>
-  <view>{{movieDetail.description}}</view>
+  <image class="movie-detail-image" src="{{movieDetail.image}}" mode="aspectFit"></image>
+  <view class="movie-title" >{{movieDetail.title}}</view>
+  <view class="movie-desc">{{movieDetail.description}}</view>
 
   <view class="btns">
-    <button bindTap="reviewComment">查看影评</button>
+    <button bindtap="reviewComment">查看影评</button>
     <button bindtap="addComment">添加影评</button>
   </view>
 </view>

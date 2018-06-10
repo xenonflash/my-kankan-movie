@@ -1,5 +1,7 @@
 // pages/movie-detail/movie-detail.js
 const qcloud = require('../../vendor/wafer2-client-sdk/index.js')
+const config = require('../../config.js')
+
 Page({
 
   /**
@@ -30,9 +32,12 @@ Page({
   },
   getDetailById(id) {
     qcloud.request({
-      url: `https://f3l9mccl.qcloud.la/mpapi/movie-list/${id}`,
+      url: `${config.service.movie}/${id}`,
       success: res => {
         this.setData({movieDetail: res.data.data})
+        wx.setNavigationBarTitle({
+          title: res.data.data.title
+        })
       }
     })
   },
@@ -53,7 +58,11 @@ Page({
       url: `/pages/comment-edit/comment-edit?tp=${link}&img=${image}&title=${title}`,
     })
   },
-
+reviewComment() {
+    wx.navigateTo({
+      url: '/pages/comment-list/comment-list',
+    })
+  },
   /**
    * 生命周期函数--监听页面显示
    */

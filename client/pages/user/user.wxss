@@ -1,1 +1,30 @@
 /* pages/user/user.wxss */
+.user-info{
+  margin-bottom: 30rpx;
+  padding: 30rpx;
+  border-bottom: 5px solid #fff
+}
+.fav-list{
+  margin-top: 40rpx
+}
+
+.fav-item{
+  background: #fff;
+  margin-bottom: 30rpx;
+  display: flex
+}
+.movie-cover{
+  width: 230rpx;
+  height: 300rpx;
+  margin-right: 20rpx
+}
+.comment-detail{
+  font-size: 30rpx;
+  color: lightslategray;
+  height: 150rpx;
+  overflow: hidden
+}
+.comment-detail button{
+  font-size: 30rpx
+}
+
