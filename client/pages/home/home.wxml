@@ -1,10 +1,13 @@
 <!--pages/home/home.wxml-->
 <view class="container">
-  <image class="hot-movie-image" src="{{hotMovie.image}}" mode="aspectFit"></image>
-  <view class="movie-name">{{hotMovie.title}}</view>
+  <navigator url='/pages/movie-detail/movie-detail?id={{hotMovie.id}}'>
+    <image class="hot-movie-image" src="{{hotMovie.image}}" mode="aspectFit"></image>
+  <view class="mini-tips">点击封面查看详情</view>
+  </navigator>
+  <view class="movie-title">{{hotMovie.title}}</view>
   <!-- 推荐信息 -->
-  <view class="referrer-info">
-    <!-- <image class="referrer-avatar" src="{{referrerInfo.avatar}}"></image> -->
+  <view class="referrer-info" bindtap="toComment" data-user="{{referrerInfo.id}}">
+    <image class="avatar" src="{{referrerInfo.avatar}}"></image> 
     <text>{{referrerInfo.name}}</text>
     <text>给你推荐了一部电影</text>
   </view>

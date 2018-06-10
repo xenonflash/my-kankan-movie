@@ -5,7 +5,11 @@
   background: rgb(250,250,255);
   min-height: 1090rpx
 } 
-
+/* 小字提示 */
+.mini-tips{
+  font-size:25rpx;
+  color:darkgrey
+}
 /* 底部按钮组成的操作条 */
 .bottom-bar{
   width: 100%;
@@ -31,6 +35,7 @@ button{
   color: lightslategray
 }
 
+/* 统一的头像样式 */
 .avatar{
   width: 60rpx;
   height: 60rpx;

@@ -14,21 +14,27 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.getHotMovie()
+  },
+  getHotMovie() {
     qcloud.request({
       url: config.service.movie,
       method: 'GET',
       success: res => {
         console.log(res)
-        this.setData({
-          hotMovie:res.data.data[0]
-        })
+        const length = res.data.data.length
+        if(length) {
+          const idx = ~~(Math.random() * length)
+          this.setData({
+            hotMovie:res.data.data[idx]
+          })
+        }
       },
       fail: err => {
         err
       }
     })
   },
-
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

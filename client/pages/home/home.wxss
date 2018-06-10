@@ -5,3 +5,11 @@
 .hot-movie-image{
   height:800rpx
 }
+.movie-title{
+  color: #333;
+  margin: 15rpx 0
+}
+.referrer-info{
+  font-size: 30rpx;
+  color: lightslategray
+}
