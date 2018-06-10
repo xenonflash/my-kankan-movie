@@ -12,4 +12,4 @@
     <button wx:if="{{tp === 'audio'}}">录音</button>
   </view>
 </view>
-<button type="primary" bindtap="gotoPreview">完成</button>
+<button class="bottom-btn" type="primary" bindtap="gotoPreview">完成</button>

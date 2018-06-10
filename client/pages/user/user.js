@@ -32,6 +32,7 @@ Page({
         this.setData({
           userInfo: res.userInfo
         })
+        this.getFavList()
       }
     })
   },

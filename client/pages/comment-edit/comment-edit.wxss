@@ -5,7 +5,7 @@
   border:1px solid #ddd;
   height:800rpx;
   position: relative;
-  background:#fff
+  background: #fff
 }
 .edit-wrapper .movie-title{
   margin-top: 380rpx
