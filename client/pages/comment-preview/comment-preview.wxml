@@ -1,2 +1,21 @@
 <!--pages/comment-preview/comment-preview.wxml-->
-<text>pages/comment-preview/comment-preview.wxml</text>
+<view class="container">
+  <view class="comment-wrapper">
+    <image class="movie-cover" src="//p55u3vy2u.bkt.clouddn.com/mp/kankan/p1461851991.webp" mode="aspectFit"></image>
+    <view class="comment-detail">
+      <view>瓦力</view>
+      <image class="avatar"></image>
+      <text>小黄蜂的影评</text>
+
+      <view class="comment-content">
+        今天是个好日子
+      </view>
+
+
+      <view class="btns">
+        <button>重新编辑</button>
+        <button>发表影评</button>
+      </view>
+    </view>
+  </view>
+</view>

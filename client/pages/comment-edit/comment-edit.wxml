@@ -1,7 +1,7 @@
 <!--pages/comment-edit/comment-edit.wxml-->
 <view class="container">
   <view class="edit-wrapper">
-    <image class="movie-img" src="{{img}}"></image>
+    <image class="movie-img" src="{{img}}" mode="aspectFit"></image>
     <view class="movie-title">{{title}}</view>
     <textarea
       wx:if="{{tp === 'text'}}"

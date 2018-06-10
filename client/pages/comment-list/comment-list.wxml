@@ -1,2 +1,11 @@
 <!--pages/comment-list/comment-list.wxml-->
-<text>pages/comment-list/comment-list.wxml</text>
+<view class="container">
+  <view class="comment-list">
+    <view class="comment-item" wx:for="{{commentList}}">
+      <image class="avatar" src="" mode="aspectFix"></image>
+      <text>陪送</text>
+      <view wx:if="{{item.type == 'text'}}">{{item.text}}</view>
+      <button wx:if="{{item.type == 'audio'}}" class="playAudio">{{item.audioLength}}s</button>
+    </view>
+  </view>
+</view>

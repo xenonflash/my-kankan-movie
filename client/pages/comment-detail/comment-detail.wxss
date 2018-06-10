@@ -1,1 +1,31 @@
-/* pages/comment-detail/comment-detail.wxss */
+/* pages/comment-preview/comment-preview.wxss */
+.comment-wrapper{
+  /* border:1px solid; */
+  position: relative;
+  text-align: center;
+  margin-top: 100rpx;
+  height: 982rpx;
+  background: #fff
+}
+.movie-cover{
+  width:200rpx; 
+  height: 300rpx;
+  margin-top: -80rpx;
+}
+.avatar{
+  width: 60rpx;
+  height: 60rpx;
+  border:1px solid #aaa;
+  border-radius: 50%;
+  vertical-align: middle;
+  margin-right: 30rpx
+}
+.comment-content{
+  margin-top:30rpx;
+  font-size:30rpx;
+  color: #333;
+  height: 450rpx;
+}
+.btns{
+  display: flex
+}/* pages/comment-detail/comment-detail.wxss */

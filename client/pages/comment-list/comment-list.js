@@ -5,7 +5,31 @@ Page({
    * 页面的初始数据
    */
   data: {
-  
+    commentList: [
+      {
+        id:'1',
+        avatar: "",
+        userName: "培松",
+        type: "text",
+        text: "今天是个好天气"
+      },
+      {
+        id:'2',
+        avatar: "",
+        userName: "小黑",
+        type: "audio",
+        text: "",
+        audioUrl: "",
+        audioLength: 20
+      },
+      {
+        id:'1',
+        avatar: "",
+        userName: "培松",
+        type: "text",
+        text: "今天是个好天气"
+      },
+    ]
   },
 
   /**

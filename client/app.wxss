@@ -2,7 +2,8 @@
 .container {
   padding: 50rpx;
   text-align: center;
-  background: #eee
+  background: #eee;
+  min-height: 1090rpx
 } 
 
 /* 底部按钮组成的操作条 */
@@ -21,4 +22,9 @@
   border:0;
   background: #fff;
   outline: 0
+}
+
+button{
+  font-size:35rpx;
+  color: lightslategray
 }
