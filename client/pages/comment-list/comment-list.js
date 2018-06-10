@@ -1,3 +1,6 @@
+const config = require('../../config.js')
+const qcloud = require('../../vendor/wafer2-client-sdk/index.js')
+
 // pages/comment-list/comment-list.js
 Page({
 
@@ -36,9 +39,29 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    const { movieId, userId } = options
+    this.getCommentList({ movieId, userId })
   },
-
+  getCommentList({ movieId, userId }) {
+    let url = `${config.service.comment}?movieId=${movieId}`
+    if (userId) {
+      url += `&userId=${userId}`
+    }
+    qcloud.request({
+      url,
+      method: 'GET',
+      success: res => {
+        this.setData({
+          commentList: res.data.data
+        })
+      },
+      fail: err => {
+        wx.showToast({
+          title: '获取评论列表失败',
+        })
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

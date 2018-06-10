@@ -13,6 +13,7 @@ var config = {
         host,
         user: `${host}/mpapi/user`,
         movie: `${host}/mpapi/movie`,
+        comment: `${host}/mpapi/comment`,
         fav: `${host}/mpapi/fav`,
         // 登录地址，用于建立会话
         loginUrl: `${host}/mpapi/login`,
