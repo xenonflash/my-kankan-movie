@@ -4,10 +4,12 @@
     <image class="movie-cover" src="//p55u3vy2u.bkt.clouddn.com/mp/kankan/p1461851991.webp" mode="aspectFit"></image>
     <view class="comment-detail">
       <view>{{movieTitle}}</view>
-      <image class="avatar">{{userInfo.avatarUrl}}</image>
+      <image class="avatar" src="{{userInfo.avatarUrl}}"></image>
       <text>{{userInfo.nickName}}的影评</text>
-      <view wx:if="{{tp === 'text'}}" class="comment-content">{{text}}</view>
-      <button wx:if="{{tp === 'audio'}}" class="play-btn">播放</button>
+      <view class="comment-content">
+        <view wx:if="{{tp === 'text'}}" class="comment-text">{{text}}</view>
+        <button wx:if="{{tp === 'audio'}}" class="play-btn" bindtap="playAudio">播放</button>
+      </view>
       <view class="btns">
         <button bindtap="backEdit">重新编辑</button>
         <button bindtap="submit">发表影评</button>

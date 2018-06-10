@@ -5,8 +5,8 @@
     <view class="movie-title">{{title}}</view>
     <textarea
       wx:if="{{tp === 'text'}}"
-      value="{{textContent}}"
-      bindchange="handleInput"
+      value="{{text}}"
+      bindinput="handleInput"
       placeholder="请输入内容"
     ></textarea>
     <button wx:if="{{tp === 'audio'}}" type="{{recording?'warn':'primary'}}" bindtap='toggleRecord'>

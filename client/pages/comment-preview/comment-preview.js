@@ -1,5 +1,6 @@
 const config = require('../../config.js')
 const qcloud = require('../../vendor/wafer2-client-sdk/index.js')
+const app = getApp()
 
 // pages/comment-preview/comment-preview.js
 Page({
@@ -15,7 +16,17 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    const { movieId, text, tp, audio } = options
+    const { movieId, text = '', tp, audio = '' } = options
+    // 展示userInfo
+    const userInfo = app.userInfo
+    this.setData({
+      userInfo,
+      movieId,
+      text,
+      tp,
+      audio
+    })
+
   },
 
   /**
@@ -49,6 +60,11 @@ Page({
   backEdit() {
     wx.navigateBack({
       delta: -1
+    })
+  },
+  playAudio() {
+    wx.playVoice({
+      filePath: this.data.audio,
     })
   },
   /**

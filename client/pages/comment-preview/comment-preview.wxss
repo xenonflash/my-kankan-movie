@@ -22,10 +22,13 @@
 }
 .comment-content{
   margin-top:30rpx;
-  font-size:30rpx;
   color: #333;
-  height: 450rpx;
+  font-size:30rpx;
+  min-height: 450rpx;
 }
 .btns{
   display: flex
+}
+.play-btn{
+  
 }

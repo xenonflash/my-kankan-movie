@@ -74,7 +74,7 @@ Page({
     const link = e.currentTarget.dataset.name
     const { title, image } = this.data.movieDetail
     wx.navigateTo({
-      url: `/pages/comment-edit/comment-edit?tp=${link}&img=${image}&title=${title}`,
+      url: `/pages/comment-edit/comment-edit?tp=${link}&img=${image}&title=${title}&movieId=${this.data.movieId}`,
     })
   },
   reviewComment() {

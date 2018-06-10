@@ -17,19 +17,20 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    const { img, title, tp } = options
+    const { movieId, img, title, tp } = options
     this.setData({
-      img, title, tp
+      img, title, tp, movieId
     })
   },
   gotoPreview() {
-    const { img, title, tp, text, audio } = this.data
-    let url = `/pages/comment-preview/comment-preview?cover=${img}&title=${title}`
+    const { img, title, tp, text, movieId, audio } = this.data
+    let url = `/pages/comment-preview/comment-preview?movieId=${movieId}&cover=${img}&title=${title}&tp=${tp}`
     if (tp === 'text') {
       url += `&text=${text}`
-    } else if(this.data.tp === 'audio') {
+    } else if(tp === 'audio') {
       url +=`&audio=${audio}`
     }
+    console.log(url)
     wx.navigateTo({
       url
     })
@@ -56,6 +57,11 @@ Page({
     }
     this.setData({
       recording: !this.data.recording
+    })
+  },
+  handleInput(e) {
+    this.setData({
+      text: e.detail.value
     })
   },
   /**
