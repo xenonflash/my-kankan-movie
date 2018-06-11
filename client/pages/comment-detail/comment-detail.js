@@ -5,18 +5,32 @@ Page({
    * 页面的初始数据
    */
   data: {
-    textContent: "sdfdsf"
+    movieId: undefined,
+    title: '',
+    userId: undefined,
+    username: '',
+    image: '',
+    avatar: ''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    const { movie_id, title, user, username, image, tp, audio_url = '', text = '', audio_lendgh = '', avatar } = this.options
+    this.setData({
+      movieId: movie_id,
+      audioLength: audio_lendgh,
+      audioUrl: audio_url,
+      userId: user,
+      text, tp, title, username, image, avatar
+    })
   },
 
-  handleInput(e) {
-    console.log(e)
+  playSound() {
+    wx.playVoice({
+      filePath: this.data.audioUrl,
+    })
   },
 
   /**

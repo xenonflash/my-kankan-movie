@@ -42,8 +42,21 @@ Page({
       }
     })
   },
-  getMovieComment() {
-
+  /**
+   * 跳转到推荐者评论详情
+   */
+  toComment() {
+    const { hotMovie = {}, commentInfo = {} } = this.data
+    const { id: movieId, title, image} = hotMovie
+    const { user_id: userId, username, avatar, type, content, audio_url:audioUrl, audio_length: audioLength} = commentInfo
+    let url = `/pages/comment-detail/comment-detail?movie_id=${movieId}&user=${userId}&title=${title}&image=${image}&username=${username}&avatar=${avatar}&tp=${type}`
+    if (type === 'text') {
+      url += `&text=${content}`
+    } else if (type === 'audio') {
+      url += `&audio_url=${audioUrl}&audio_length=${audioLength}`
+    }
+    console.log(url)
+    wx.navigateTo({ url })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

@@ -1,14 +1,15 @@
 <!--pages/comment-preview/comment-preview.wxml-->
 <view class="container">
   <view class="comment-wrapper">
-    <image class="movie-cover" src="//p55u3vy2u.bkt.clouddn.com/mp/kankan/p1461851991.webp" mode="aspectFit"></image>
+    <image class="movie-cover" src="{{image}}" mode="aspectFit"></image>
     <view class="comment-detail">
-      <view>瓦力</view>
-      <image class="avatar"></image>
-      <text>小黄蜂的影评</text>
+      <view>{{title}}</view>
+      <image class="avatar" src="{{avatar}}"></image>
+      <text>{{username}}的影评</text>
 
       <view class="comment-content">
-        今天是个好日子
+        <view wx:if="{{tp === 'text'}}">{{text}}</view>
+        <button wx:if="{{tp === 'audio'}}" bindtap='playSound'/>
       </view>
       <view class="btns">
         <button>重新编辑</button>
