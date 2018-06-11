@@ -1,6 +1,8 @@
 const app = getApp()
 const qcloud = require('../../vendor/wafer2-client-sdk/index.js')
 const config = require('../../config.js')
+const favApi = require('../../api/favourite.api.js')
+
 // pages/user/user.js
 Page({
 
@@ -37,14 +39,19 @@ Page({
     })
   },
   getFavList() {
-    qcloud.request({
-      url: config.service.fav,
-      method: 'GET',
-      success: res => {
-        this.setData({
-          favList: res.data.data
-        })
-      }
+    // qcloud.request({
+    //   url: config.service.fav,
+    //   method: 'GET',
+    //   success: res => {
+    //     this.setData({
+    //       favList: res.data.data
+    //     })
+    //   }
+    // })
+    favApi.getFavList().then(res => {
+      this.setData({
+        favList: res
+      })
     })
   },
 

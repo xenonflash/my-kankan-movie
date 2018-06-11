@@ -39,6 +39,7 @@ router.get('/movie/:id', controllers.movies.detail)
 
 // 个人收藏夹
 router.get('/fav', validationMiddleware, controllers.favourite.list)
+router.put('/fav', validationMiddleware, controllers.favourite.add)
 // 评论
 router.get('/comment', controllers.comment.list)
 router.get('/comment/:id', controllers.comment.detail)

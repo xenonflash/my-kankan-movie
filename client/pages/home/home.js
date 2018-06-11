@@ -50,8 +50,8 @@ Page({
   toComment() {
     const { hotMovie = {}, commentInfo = {} } = this.data
     const { id: movieId, title, image} = hotMovie
-    const { user_id: userId, username, avatar, type, content, audio_url:audioUrl, audio_length: audioLength} = commentInfo
-    let url = `/pages/comment-detail/comment-detail?movie_id=${movieId}&user=${userId}&title=${title}&image=${image}&username=${username}&avatar=${avatar}&tp=${type}`
+    const { user_id: userId, username, avatar, type, content, audio_url:audioUrl, audio_length: audioLength, id} = commentInfo
+    let url = `/pages/comment-detail/comment-detail?id=${id}&movie_id=${movieId}&user=${userId}&title=${title}&image=${image}&username=${username}&avatar=${avatar}&tp=${type}`
     if (type === 'text') {
       url += `&text=${content}`
     } else if (type === 'audio') {
