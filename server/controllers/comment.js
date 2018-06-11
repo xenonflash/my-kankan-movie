@@ -32,9 +32,14 @@ module.exports = {
    */
   list: async ctx => {
     let movieId = +ctx.request.query.movie_id
+    let user = +ctx.request.query.user_id
 
     if (!isNaN(movieId)) {
-      ctx.state.data = await DB.query('select * from comment where comment.movie_id = ?', [movieId])
+      if (user) {
+        ctx.state.data = await DB.query('select * from comment where comment.movie_id = ? and user_id = ?', [movieId, user])
+      } else {
+        ctx.state.data = await DB.query('select * from comment where comment.movie_id = ?', [movieId])
+      }
     } else {
       ctx.state.data = []
     }

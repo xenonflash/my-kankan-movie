@@ -1,5 +1,8 @@
 const qcloud = require('../../vendor/wafer2-client-sdk/index.js')
 const config = require('../../config.js')
+const movieApi = require('../../api/movie.api.js')
+const commentApi = require('../../api/comment.api.js')
+
 // pages/home/home.js
 Page({
 
@@ -7,33 +10,40 @@ Page({
    * 页面的初始数据
    */
   data: {
-    hotMovie:null
+    hotMovie:null,
+    commentInfo: null
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    wx.setNavigationBarTitle({
+      title: '侃侃电影',
+    })
     this.getHotMovie()
   },
   getHotMovie() {
-    qcloud.request({
-      url: config.service.movie,
-      method: 'GET',
-      success: res => {
-        console.log(res)
-        const length = res.data.data.length
-        if(length) {
-          const idx = ~~(Math.random() * length)
-          this.setData({
-            hotMovie:res.data.data[idx]
-          })
-        }
-      },
-      fail: err => {
-        err
+    movieApi.getMovieList().then(res => {
+      if (res && res.length) {
+        this.setData({
+          hotMovie: res[0]
+        })
+        return res[0]
+      }
+    }).then(hot => {
+      const data = { movie_id: hot.id }
+      return commentApi.getCommentList({ data })
+    }).then(res => {
+      if (res && res.length) {
+        this.setData({
+          commentInfo: res[0]
+        })
       }
     })
+  },
+  getMovieComment() {
+
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

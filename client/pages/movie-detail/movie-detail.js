@@ -79,7 +79,7 @@ Page({
   },
   reviewComment() {
     wx.navigateTo({
-      url: '/pages/comment-list/comment-list?movieId=' + this.movieId,
+      url: '/pages/comment-list/comment-list?movieId=' + this.data.movieId,
     })
   },
   /**

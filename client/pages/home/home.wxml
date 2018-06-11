@@ -6,9 +6,9 @@
   </navigator>
   <view class="movie-title">{{hotMovie.title}}</view>
   <!-- 推荐信息 -->
-  <view class="referrer-info" bindtap="toComment" data-user="{{referrerInfo.id}}">
-    <image class="avatar" src="{{referrerInfo.avatar}}"></image> 
-    <text>{{referrerInfo.name}}</text>
+  <view wx:if="{{commentInfo}}" class="referrer-info" bindtap="toComment" data-user="{{referrerInfo.id}}">
+    <image class="avatar" src="{{commentInfo.avatar}}"></image> 
+    <text>{{commentInfo.username}}</text>
     <text>给你推荐了一部电影</text>
   </view>
 
