@@ -1,15 +1,15 @@
 <!--pages/comment-preview/comment-preview.wxml-->
 <view class="container">
   <view class="comment-wrapper">
-    <image class="movie-cover" src="{{image}}" mode="aspectFit"></image>
+    <image class="movie-cover" src="{{detail.image}}" mode="aspectFit"></image>
     <view class="comment-detail">
       <view>{{title}}</view>
-      <image class="avatar" src="{{avatar}}"></image>
+      <image class="avatar" src="{{detail.avatar}}"></image>
       <text>{{username}}的影评</text>
 
       <view class="comment-content">
-        <view wx:if="{{tp === 'text'}}">{{text}}</view>
-        <button wx:if="{{tp === 'audio'}}" bindtap='playSound'/>
+        <view wx:if="{{detail.type === 'text'}}">{{detail.content}}</view>
+        <button wx:if="{{detail.type === 'audio'}}" bindtap='playSound'/>
       </view>
       <view class="btns">
         <button bindtap="addToFav">收藏</button>

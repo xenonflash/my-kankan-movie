@@ -64,8 +64,8 @@ Page({
    */
   toCommentDetail(e){
     const commentId=e.currentTarget.dataset.id
-    dwx.navigateTo({
-      url: '/pages/comment-detail/comment-detail',
+    wx.navigateTo({
+      url: '/pages/comment-detail/comment-detail?commentId=' + commentId,
     })
   },
   onTypeChange(e) {
@@ -76,6 +76,11 @@ Page({
       })
       this.fetchData()
     }
+  },
+  playSound(e) {
+    wx.playVoice({
+      filePath: e.currentTarget.dataset.src,
+    })
   },
   /**
    * 生命周期函数--监听页面显示

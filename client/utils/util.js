@@ -38,22 +38,11 @@ var showModel = (title, content) => {
         showCancel: false
     })
 }
-
-var makeGet = (url, data) => {
-  return new Promise((resolve, reject) => {
-    qncloud.request({
-      url,
-      data,
-      success: res => {
-        if (res && res.statusCode === 200) {
-          resolve(res.data)
-        } else {
-          reject(res.errorMsg)
-        }
-      },
-      fail:reject
-    })
+var playSound = (url) => {
+  wx.playVoice({
+    filePath: url,
   })
 }
 
-module.exports = { formatTime, showBusy, showSuccess, showModel }
+
+module.exports = { formatTime, showBusy, showSuccess, showModel, playSound }

@@ -5,7 +5,7 @@
       <image class="avatar" src="" mode="aspectFix" src="{{item.avatar}}"></image>
       <text>{{item.username}}</text>
       <view wx:if="{{item.type == 'text'}}">{{item.content}}</view>
-      <button wx:if="{{item.type == 'audio'}}" class="playAudio">{{item.audioLength}}s</button>
+      <button wx:if="{{item.type == 'audio'}}" bindtap="playAudio">{{item.audioLength}}s</button>
     </view>
   </view>
 </view>

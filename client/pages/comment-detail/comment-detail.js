@@ -1,5 +1,6 @@
 const app = getApp()
 const favApi = require('../../api/favourite.api.js')
+const commentApi= require('../../api/comment.api.js')
 
 // pages/comment-detail/comment-detail.js
 Page({
@@ -8,48 +9,22 @@ Page({
    * 页面的初始数据
    */
   data: {
-    commentID: undefined,
-    movieId: undefined,
-    title: '',
-    userId: undefined,
-    username: '',
-    image: '',
-    avatar: '',
-    tp: '',
-    audioUrl: '',
-    audioLength: 0,
-    actionSheetHidden: true
+    actionSheetHidden: true,
+    detail: {}
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    const {
-      id,
-      movie_id,
-      title,
-      user,
-      username,
-      image,
-      tp,
-      audio_url = '',
-      text = '',
-      audio_lendgh = '',
-      avatar
-    } = this.options
-    this.setData({
-      commentId: id,
-      movieId: movie_id,
-      audioLength: audio_lendgh,
-      audioUrl: audio_url,
-      userId: user,
-      text,
-      tp,
-      title,
-      username,
-      image,
-      avatar
+    const{ commentId }= options
+    console.log(commentApi.getCommentDetail)
+    commentApi.getCommentDetail(commentId).then(res => {
+      if(res && res.length) {
+        this.setData({
+          detail:res[0]
+        })
+      }
     })
   },
 
@@ -94,23 +69,23 @@ Page({
     const link = e.currentTarget.dataset.name
     const {
       image,
-      tp,
-      movieId,
+      type,
+      movie_id,
       title
-    } = this.data
+    } = this.data.detail
     wx.navigateTo({
-      url: `/pages/comment-edit/comment-edit?tp=${tp}&img=${image}&title=${title}&movieId=${movieId}`,
+      url: `/pages/comment-edit/comment-edit?tp=${type}&img=${image}&title=${title}&movieId=${movie_id}`,
     })
   },
   addToFav() {
     app.checkSession({
       success: res => {
         const {
-          commentId
-        } = this.data
+          comment_id
+        } = this.data.detail
 
         const data = {
-          comment_id: commentId
+          comment_id
         }
         favApi.addFav({
           data
@@ -177,6 +152,4 @@ Page({
   onShareAppMessage: function() {
 
   }
-
-
 })

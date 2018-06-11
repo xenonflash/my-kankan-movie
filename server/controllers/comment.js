@@ -50,15 +50,14 @@ module.exports = {
     ctx.state.data = await DB.query('select '+ scope.join(',') +' from `comment`, `movies` where comment.user_id = ? and comment.movie_id=movies.movie_id', [user])
 
   },
+
   /**
-   * 获取评论列表
+   * 获取评论详情
    */
   detail: async ctx => {
-    let movieId = +ctx.request.query.movie_id
-    if (!isNaN(movieId)) {
-      ctx.state.data = await DB.query('select * from comment where comment.movie_id = ?', [movieId])
-    } else {
-      ctx.state.data = []
-    }
+    let commentId = +ctx.params.id
+    if (!isNaN(commentId)) {
+      ctx.state.data = await DB.query('select * from `comment`, `movies` where comment.comment_id = ? and movies.movie_id=comment.movie_id', [commentId])
+    } 
   },
 }

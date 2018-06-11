@@ -11,12 +11,12 @@
       <view class="tab-item {{listType == 'pub' ? 'active' : ''}}" data-type="pub">发布的影评</view>
     </view>
     <view class="fav-list">
-      <view class="fav-item" wx:for="{{listType == 'fav' ? favList : commentList}}" bindtap="toCommentDetail" data-id="{{item.id}}">
+      <view class="fav-item" wx:for="{{listType == 'fav' ? favList : commentList}}" bindtap="toCommentDetail" data-id="{{item.comment_id}}">
         <image class="movie-cover" src="{{item.image}}" mode="widthFit"></image>
         <view class="comment-content">
           <view>{{item.title}}</view>
           <view class="comment-detail">
-            <button wx:if="{{item.type=='audio'}}">{{item.audioLength}}s</button>
+            <button wx:if="{{item.type=='audio'}}" bindtap="playSound" data-src="{{item.audio_url}}">{{item.audio_length}}s</button>
             <view class="comment-text" wx:if="{{item.type=='text'}}">{{item.content}}</view>
           </view>
           <view>

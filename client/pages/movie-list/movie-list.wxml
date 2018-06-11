@@ -5,7 +5,7 @@
     wx:for="{{movieList}}"
     wx:key="{{index}}"
     bindtap="toDetail"
-    data-id="{{item.id}}"
+    data-id="{{item.movie_id}}"
   >
     <image class="movie-item-image" src="{{item.image}}"></image>
     <view class="movie-item-info">
