@@ -5,7 +5,8 @@ const DB = require('../utils/db.js')
 module.exports = {
   list: async(ctx, next) => {
     let user = ctx.state.$wxInfo.userinfo.openId
-    ctx.state.data = await DB.query('select * from favourite where favourite.user_id = ?', [user])
+    const scope = ['title', 'image', 'type', 'username', 'avatar', 'content', 'audio_url', 'audio_length']
+    ctx.state.data = await DB.query('SELECT '+ scope.join(',') +' FROM `favourite`, `comment`, `movies` WHERE favourite.user_id= ? AND favourite.comment_id = comment.id AND comment.movie_id = movies.id' , [user])
   },
   add: async(ctx, next) => {
     let user = ctx.state.$wxInfo.userinfo.openId

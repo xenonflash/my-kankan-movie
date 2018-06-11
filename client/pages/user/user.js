@@ -39,15 +39,6 @@ Page({
     })
   },
   getFavList() {
-    // qcloud.request({
-    //   url: config.service.fav,
-    //   method: 'GET',
-    //   success: res => {
-    //     this.setData({
-    //       favList: res.data.data
-    //     })
-    //   }
-    // })
     favApi.getFavList().then(res => {
       this.setData({
         favList: res
