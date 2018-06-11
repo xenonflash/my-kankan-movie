@@ -32,7 +32,9 @@ Page({
         return res[0]
       }
     }).then(hot => {
-      const data = { movie_id: hot.id }
+      const data = {
+        movie_id: hot.id,
+      }
       return commentApi.getCommentList({ data })
     }).then(res => {
       if (res && res.length) {

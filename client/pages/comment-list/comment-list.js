@@ -1,5 +1,6 @@
 const config = require('../../config.js')
 const qcloud = require('../../vendor/wafer2-client-sdk/index.js')
+const commentApi = require('../../api/comment.api.js')
 
 // pages/comment-list/comment-list.js
 Page({
@@ -8,58 +9,23 @@ Page({
    * 页面的初始数据
    */
   data: {
-    commentList: [
-      {
-        id:'1',
-        avatar: "",
-        userName: "培松",
-        type: "text",
-        text: "今天是个好天气"
-      },
-      {
-        id:'2',
-        avatar: "",
-        userName: "小黑",
-        type: "audio",
-        text: "",
-        audioUrl: "",
-        audioLength: 20
-      },
-      {
-        id:'1',
-        avatar: "",
-        userName: "培松",
-        type: "text",
-        text: "今天是个好天气"
-      },
-    ]
+    commentList: []
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    const { movieId, userId } = options
+    const { movie_id: movieId, user: userId } = options
     this.getCommentList({ movieId, userId })
   },
   getCommentList({ movieId, userId }) {
-    let url = `${config.service.comment}?movieId=${movieId}`
+    let data = { movie_id: movieId }
     if (userId) {
-      url += `&userId=${userId}`
+      data.user_id = userId
     }
-    qcloud.request({
-      url,
-      method: 'GET',
-      success: res => {
-        this.setData({
-          commentList: res.data.data
-        })
-      },
-      fail: err => {
-        wx.showToast({
-          title: '获取评论列表失败',
-        })
-      }
+    commentApi.getCommentList({ data }).then(res => {
+      this.setData({commentList: res})
     })
   },
   /**

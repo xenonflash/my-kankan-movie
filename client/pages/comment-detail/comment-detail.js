@@ -1,3 +1,5 @@
+const app = getApp()
+
 // pages/comment-detail/comment-detail.js
 Page({
 
@@ -10,7 +12,11 @@ Page({
     userId: undefined,
     username: '',
     image: '',
-    avatar: ''
+    avatar: '',
+    tp: '',
+    audioUrl: '',
+    audioLength: 0,
+    actionSheetHidden: true
   },
 
   /**
@@ -30,6 +36,41 @@ Page({
   playSound() {
     wx.playVoice({
       filePath: this.data.audioUrl,
+    })
+  },
+  addComment() {
+    app.checkSession({
+      success: res => {
+        this.setData({
+          actionSheetHidden: !this.data.actionSheetHidden
+        })
+      },
+      fail: err => {
+        wx.showModal({
+          title: '提示',
+          content: '请在个人中心登录后操作',
+          confirmText: '前往登录',
+          success: res => {
+            if (res.confirm) {
+              wx.navigateTo({
+                url: '/pages/user/user',
+              })
+            }
+          }
+        })
+      }
+    })
+  },
+  actionSheetClose(e) {
+    this.setData({
+      actionSheetHidden: true
+    })
+  },
+  onAction(e) {
+    const link = e.currentTarget.dataset.name
+    const { image, tp, movieId, title} = this.data
+    wx.navigateTo({
+      url: `/pages/comment-edit/comment-edit?tp=${tp}&img=${image}&title=${title}&movieId=${movieId}`,
     })
   },
 

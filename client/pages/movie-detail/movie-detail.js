@@ -78,9 +78,9 @@ Page({
     })
   },
   reviewComment() {
-    wx.navigateTo({
-      url: '/pages/comment-list/comment-list?movieId=' + this.data.movieId,
-    })
+    const url = '/pages/comment-list/comment-list?movie_id=' + this.data.movieId
+    console.log(url)
+    wx.navigateTo({ url })
   },
   /**
    * 生命周期函数--监听页面显示

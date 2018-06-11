@@ -1,8 +1,8 @@
 const qcloud = require('../vendor/wafer2-client-sdk/index.js')
 
-export function makeRequest(url) {
+export function makeRequest(url, method = 'GET') {
   return function (params = {}) {
-    const _params = Object.assign({}, {method: 'GET', login: false, data: {}}, params)
+    const _params = Object.assign({}, {method, login: false, data: {}}, params)
     return new Promise((resolve, reject) => {
       qcloud.request({
         ..._params,

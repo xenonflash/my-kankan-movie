@@ -12,9 +12,14 @@
         <button wx:if="{{tp === 'audio'}}" bindtap='playSound'/>
       </view>
       <view class="btns">
-        <button>重新编辑</button>
-        <button>发表影评</button>
+        <button bindtap="addToFav">收藏</button>
+        <button bindtap="addComment">写影评</button>
       </view>
     </view>
   </view>
 </view>
+<action-sheet hidden="{{actionSheetHidden}}" bindchange="actionSheetClose">
+  <action-sheet-item class="action-item" bindtap="onAction" data-name="text">文字</action-sheet-item>
+  <action-sheet-item class="action-item" bindtap="onAction" data-name="audio">音频</action-sheet-item>
+  <action-sheet-cancel class="cancel">取消</action-sheet-cancel>
+</action-sheet>
