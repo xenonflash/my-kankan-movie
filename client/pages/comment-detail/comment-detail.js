@@ -73,7 +73,9 @@ Page({
       url: `/pages/comment-edit/comment-edit?tp=${tp}&img=${image}&title=${title}&movieId=${movieId}`,
     })
   },
-
+  addToFav() {
+    
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
