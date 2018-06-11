@@ -33,7 +33,7 @@ Page({
       }
     }).then(hot => {
       const data = {
-        movie_id: hot.id,
+        movie_id: hot.movie_id,
       }
       return commentApi.getCommentList({ data })
     }).then(res => {
@@ -48,16 +48,8 @@ Page({
    * 跳转到推荐者评论详情
    */
   toComment() {
-    const { hotMovie = {}, commentInfo = {} } = this.data
-    const { id: movieId, title, image} = hotMovie
-    const { user_id: userId, username, avatar, type, content, audio_url:audioUrl, audio_length: audioLength, id} = commentInfo
-    let url = `/pages/comment-detail/comment-detail?id=${id}&movie_id=${movieId}&user=${userId}&title=${title}&image=${image}&username=${username}&avatar=${avatar}&tp=${type}`
-    if (type === 'text') {
-      url += `&text=${content}`
-    } else if (type === 'audio') {
-      url += `&audio_url=${audioUrl}&audio_length=${audioLength}`
-    }
-    console.log(url)
+    const { comment_id} = this.data.commentInfo
+    let url = `/pages/comment-detail/comment-detail?commentId=${comment_id}`
     wx.navigateTo({ url })
   },
   /**

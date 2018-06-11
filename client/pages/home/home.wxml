@@ -1,6 +1,6 @@
 <!--pages/home/home.wxml-->
 <view class="container">
-  <navigator url='/pages/movie-detail/movie-detail?id={{hotMovie.id}}'>
+  <navigator url='/pages/movie-detail/movie-detail?id={{hotMovie.movie_id}}'>
     <image class="hot-movie-image" src="{{hotMovie.image}}" mode="aspectFit"></image>
   <view class="mini-tips">点击封面查看详情</view>
   </navigator>

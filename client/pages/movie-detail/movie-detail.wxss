@@ -3,6 +3,10 @@
   margin-top: 40rpx;
   display: flex
 }
+.movie-detail-image{
+  width:350rpx;
+  height: 650rpx
+}
 .movie-desc{
   font-size: 30rpx;
   color: lightslategrey;

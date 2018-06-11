@@ -28,6 +28,15 @@ Page({
       this.setData({commentList: res})
     })
   },
+  toCommentDetail(e) {
+    const { id } = e.currentTarget.dataset
+    wx.navigateTo({
+      url: '/pages/comment-detail/comment-detail?commentId=' +id,
+    })
+  },
+  playSound() {
+    
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

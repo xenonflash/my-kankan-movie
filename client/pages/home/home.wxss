@@ -3,7 +3,8 @@
   padding: 50rpx
 }
 .hot-movie-image{
-  height:800rpx
+  width: 450rpx;
+  height:600rpx
 }
 .movie-title{
   color: #333;

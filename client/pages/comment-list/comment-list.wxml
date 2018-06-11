@@ -1,7 +1,7 @@
 <!--pages/comment-list/comment-list.wxml-->
 <view class="container">
   <view class="comment-list">
-    <view class="comment-item" wx:for="{{commentList}}">
+    <view class="comment-item" wx:for="{{commentList}}" bindtap="toCommentDetail" data-id="{{item.comment_id}}">
       <image class="avatar" src="" mode="aspectFix" src="{{item.avatar}}"></image>
       <text>{{item.username}}</text>
       <view wx:if="{{item.type == 'text'}}">{{item.content}}</view>

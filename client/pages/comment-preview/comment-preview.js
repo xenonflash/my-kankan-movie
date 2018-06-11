@@ -16,10 +16,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    const { movieId, text = '', tp, audio = '' } = options
+    const { movieId, text = '', tp, audio = '', img} = options
     // 展示userInfo
     const userInfo = app.userInfo
     this.setData({
+      img,
       userInfo,
       movieId,
       text,

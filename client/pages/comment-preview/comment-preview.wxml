@@ -1,7 +1,7 @@
 <!--pages/comment-preview/comment-preview.wxml-->
 <view class="container">
   <view class="comment-wrapper">
-    <image class="movie-cover" src="//p55u3vy2u.bkt.clouddn.com/mp/kankan/p1461851991.webp" mode="aspectFit"></image>
+    <image class="movie-cover" src="{{img}}" mode="aspectFit"></image>
     <view class="comment-detail">
       <view>{{movieTitle}}</view>
       <image class="avatar" src="{{userInfo.avatarUrl}}"></image>

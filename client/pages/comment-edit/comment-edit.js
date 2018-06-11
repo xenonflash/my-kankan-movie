@@ -24,7 +24,7 @@ Page({
   },
   gotoPreview() {
     const { img, title, tp, text, movieId, audio } = this.data
-    let url = `/pages/comment-preview/comment-preview?movieId=${movieId}&cover=${img}&title=${title}&tp=${tp}`
+    let url = `/pages/comment-preview/comment-preview?movieId=${movieId}&img=${img}&title=${title}&tp=${tp}`
     if (tp === 'text') {
       url += `&text=${text}`
     } else if(tp === 'audio') {
