@@ -4,6 +4,17 @@
   padding: 30rpx;
   border-bottom: 5px solid #fff
 }
+.tab{
+  display:flex
+}
+.tab-item{
+  flex: 1;
+  border-bottom:2px solid transparent;
+}
+.tab-item.active{
+  border-bottom-color: lightseagreen
+}
+
 .fav-list{
   margin-top: 40rpx
 }

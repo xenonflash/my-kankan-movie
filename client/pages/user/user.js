@@ -11,7 +11,8 @@ Page({
    */
   data: {
     userInfo: null,
-    favList: []
+    favList: [],
+    listType: 'fav'
   },
 
   /**
@@ -45,7 +46,14 @@ Page({
       })
     })
   },
-
+  onTypeChange(e) {
+    const listType = e.target.dataset.type
+    if (listType) {
+      this.setData({
+        listType
+      })
+    }
+  },
   /**
    * 生命周期函数--监听页面显示
    */
