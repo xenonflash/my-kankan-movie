@@ -2,6 +2,7 @@ const app = getApp()
 const qcloud = require('../../vendor/wafer2-client-sdk/index.js')
 const config = require('../../config.js')
 const favApi = require('../../api/favourite.api.js')
+const commentApi = require('../../api/comment.api.js')
 
 // pages/user/user.js
 Page({
@@ -12,6 +13,7 @@ Page({
   data: {
     userInfo: null,
     favList: [],
+    commentList: [],
     listType: 'fav'
   },
 
@@ -35,16 +37,27 @@ Page({
         this.setData({
           userInfo: res.userInfo
         })
-        this.getFavList()
+        this.fetchData()
       }
     })
   },
-  getFavList() {
-    favApi.getFavList().then(res => {
-      this.setData({
-        favList: res
+  fetchData() {
+    const type = this.data.listType
+    //获取收藏列表
+    if (type === 'fav'){
+      favApi.getFavList().then(res => {
+        this.setData({
+          favList: res
+        })
       })
-    })
+    } else if (type === 'pub') {
+      commentApi.getCurrUserComment().then(res => {
+        this.setData({
+          commentList: res
+        })
+      })
+    }
+
   },
   onTypeChange(e) {
     const listType = e.target.dataset.type
@@ -52,6 +65,7 @@ Page({
       this.setData({
         listType
       })
+      this.fetchData()
     }
   },
   /**
@@ -61,7 +75,7 @@ Page({
     app.checkSession({
       success: res => {
         this.setData({ userInfo: res.userInfo })
-        this.getFavList()
+        this.fetchData()
       }
     })
   },

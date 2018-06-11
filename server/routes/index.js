@@ -42,6 +42,7 @@ router.get('/fav', validationMiddleware, controllers.favourite.list)
 router.put('/fav', validationMiddleware, controllers.favourite.add)
 // 评论
 router.get('/comment', controllers.comment.list)
+router.get('/commentOfCurrUser', validationMiddleware, controllers.comment.listCurr)
 router.get('/comment/:id', controllers.comment.detail)
 router.put('/comment', validationMiddleware, controllers.comment.add)
 
