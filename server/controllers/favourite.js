@@ -6,7 +6,7 @@ module.exports = {
   list: async(ctx, next) => {
     let user = ctx.state.$wxInfo.userinfo.openId
     const scope = ['title', 'image', 'type', 'username', 'avatar', 'content', 'audio_url', 'audio_length']
-    ctx.state.data = await DB.query('SELECT '+ scope.join(',') +' FROM `favourite`, `comment`, `movies` WHERE favourite.user_id= ? AND favourite.comment_id = comment.id AND comment.movie_id = movies.id' , [user])
+    ctx.state.data = await DB.query('SELECT '+ scope.join(',') +' FROM `favourite`, `comment`, `movies` WHERE favourite.user_id= ? AND favourite.comment_id = comment.comment_id AND comment.movie_id = movies.movie_id' , [user])
   },
   add: async(ctx, next) => {
     let user = ctx.state.$wxInfo.userinfo.openId

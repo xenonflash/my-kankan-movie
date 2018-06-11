@@ -46,8 +46,8 @@ module.exports = {
   },
   listCurr: async ctx => {
     let user = ctx.state.$wxInfo.userinfo.openId
-    const scope = ['title', 'image', 'type', 'username', 'avatar', 'content', 'audio_url', 'audio_length']
-    ctx.state.data = await DB.query('select '+ scope.join(',') +' from `comment`, `movies` where comment.user_id = ? and comment.movie_id=movies.id', [user])
+    const scope = ['comment_id','title', 'image', 'type', 'username', 'avatar', 'content', 'audio_url', 'audio_length']
+    ctx.state.data = await DB.query('select '+ scope.join(',') +' from `comment`, `movies` where comment.user_id = ? and comment.movie_id=movies.movie_id', [user])
 
   },
   /**

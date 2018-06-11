@@ -11,7 +11,7 @@ module.exports = {
     const id = +ctx.params.id
     let data
     if (!isNaN(id)){
-      data = (await DB.query('select * from movies where movies.id = ?', [id]))[0]
+      data = (await DB.query('select * from movies where movies.movie_id = ?', [id]))[0]
     } else {
       data = {}
     }

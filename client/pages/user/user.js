@@ -51,13 +51,22 @@ Page({
         })
       })
     } else if (type === 'pub') {
+      // 获取 已发布列表
       commentApi.getCurrUserComment().then(res => {
         this.setData({
           commentList: res
         })
       })
     }
-
+  },
+  /**
+   * 跳转到影评详情
+   */
+  toCommentDetail(e){
+    const commentId=e.currentTarget.dataset.id
+    dwx.navigateTo({
+      url: '/pages/comment-detail/comment-detail',
+    })
   },
   onTypeChange(e) {
     const listType = e.target.dataset.type
