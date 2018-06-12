@@ -1,5 +1,8 @@
 const config = require('../../config.js')
 const qcloud = require('../../vendor/wafer2-client-sdk/index.js')
+const commentApi = require('../../api/comment.api.js')
+const fileApi =require('../../api/file.api.js')
+
 const app = getApp()
 
 // pages/comment-preview/comment-preview.js
@@ -15,51 +18,101 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-    const { movieId, text = '', tp, audio = '', img} = options
+  onLoad: function(options) {
+    let {
+      movieId,
+      text = '',
+      tp,
+      audio = '',
+      audio_length = 0,
+      img
+    } = options
     // 展示userInfo
     const userInfo = app.userInfo
+    if(audio) {
+      audio += `=${audio_length}.mp3`
+    }
     this.setData({
       img,
       userInfo,
       movieId,
       text,
       tp,
-      audio
+      audio,
+      audioLength: audio_length
     })
-
+    console.log(audio)
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
-  },
+  onReady: function() {},
   submit() {
-    const { movieId, text, tp, audio } = this.data
-    qcloud.request({
-      url: config.service.comment,
-      method: 'PUT',
-      data: {
-        movie_id: movieId,
-        text,
-        tp,
-        audio_url: audio
-      },
-      success: res => {
-        wx.showModal({
-          title: '提示',
-          content: '提交成功',
-        })
-      },
-      fail: err => {
-        wx.showModal({
-          title: '提示',
-          content: '提交失败, 请重试',
-        })
-      }
+    const {
+      movieId,
+      text,
+      tp,
+      audio
+    } = this.data
+    if (tp === 'text') {
+      this.submittextComment()
+    } else if(tp === 'audio') {
+      this.submitAudioComment()
+    }
+  },
+  /**
+   * 提交文字评论
+   */
+  submitTextComment() {
+    const data = {
+      movie_id: movieId,
+      text,
+      tp,
+      audio_url: audio
+    }
+    commentApi.addComment({
+      data
+    }).then(res => {
+      wx.showModal({
+        title: '提示',
+        content: '提交成功',
+      })
+    }).catch(err => {
+      wx.showModal({
+        title: '提示',
+        content: '提交失败, 请重试',
+      })
     })
-
+  },
+  /**
+   * 提交音频评论
+   */
+  submitAudioComment() {
+   // 声音文件上传先
+    const data = {
+      filePath: this.data.audio,
+      name: `file`
+    }
+    
+    fileApi.upload(data).then(res => {
+      debugger
+      const data = {
+        movie_id: movieId,
+        tp,
+        audio_url: res,
+        audioLendth: this.data.audioLength
+      }
+      return commentApi.addComment({data})
+    }).then(res => {
+      wx.showToast({
+        title: '提交成功',
+      })
+    }).catch(err => {
+      wx.showToast({
+        title: '提交失败',
+      })
+    })
   },
   backEdit() {
     wx.navigateBack({
@@ -74,42 +127,42 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
+  onShow: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
+  onHide: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
+  onUnload: function() {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
+  onPullDownRefresh: function() {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
+  onReachBottom: function() {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  onShareAppMessage: function() {
 
   }
 })

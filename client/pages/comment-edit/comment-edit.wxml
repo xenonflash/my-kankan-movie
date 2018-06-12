@@ -2,7 +2,7 @@
 <view class="container">
   <view class="edit-wrapper">
     <image class="movie-img" src="{{img}}" mode="aspectFit"></image>
-    <view class="movie-title">{{title}}</view>
+    <view class="movie-title" mode="aspectFit">{{title}}</view>
     <textarea
       wx:if="{{tp === 'text'}}"
       value="{{text}}"

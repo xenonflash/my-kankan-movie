@@ -72,9 +72,9 @@ Page({
   },
   onAction(e) {
     const link = e.currentTarget.dataset.name
-    const { title, image } = this.data.movieDetail
+    const { title, image, movie_id} = this.data.movieDetail
     wx.navigateTo({
-      url: `/pages/comment-edit/comment-edit?tp=${link}&img=${image}&title=${title}&movieId=${this.data.movieId}`,
+      url: `/pages/comment-edit/comment-edit?tp=${link}&img=${image}&title=${title}&movieId=${movie_id}`,
     })
   },
   reviewComment() {

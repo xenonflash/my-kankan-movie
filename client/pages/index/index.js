@@ -102,11 +102,11 @@ Page({
         var filePath = res.tempFilePaths[0]
 
         // 上传图片
+        debugger
         wx.uploadFile({
           url: config.service.uploadUrl,
           filePath: filePath,
           name: 'file',
-
           success: function (res) {
             util.showSuccess('上传图片成功')
             console.log(res)

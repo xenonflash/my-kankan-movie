@@ -1,4 +1,6 @@
 // pages/comment-edit/comment-edit.js
+const recorderManager = wx.getRecorderManager()
+
 Page({
 
   /**
@@ -10,6 +12,7 @@ Page({
     tp: '',
     text: '',
     audio: '',
+    audioLength: 0,
     recording: false
   },
 
@@ -21,14 +24,35 @@ Page({
     this.setData({
       img, title, tp, movieId
     })
+
+    recorderManager.onStart(() => {
+      console.log('recorder start')
+    })
+    recorderManager.onPause(() => {
+      console.log('recorder pause')
+    })
+    recorderManager.onStop((res) => {
+      console.log('recorder stop', res)
+      const { tempFilePath } = res
+      let audioLength = 0
+      const match = tempFilePath.match(/durationTime=(\d+)\./)
+      if (match) {
+        audioLength = +match[1]
+      }
+      this.setData({
+        audioLength,
+        audio:tempFilePath
+      })
+    })
   },
   gotoPreview() {
-    const { img, title, tp, text, movieId, audio } = this.data
+    const { img, title, tp, text, movieId, audio, audioLength } = this.data
     let url = `/pages/comment-preview/comment-preview?movieId=${movieId}&img=${img}&title=${title}&tp=${tp}`
     if (tp === 'text') {
       url += `&text=${text}`
     } else if(tp === 'audio') {
-      url +=`&audio=${audio}`
+      // const fAudio = audio.replace(/\./g, '_')
+      url +=`&audio=${audio}&audio_length=${audioLength}`
     }
     console.log(url)
     wx.navigateTo({
@@ -37,22 +61,16 @@ Page({
   },
   toggleRecord() {
     if (this.data.recording) {
-      wx.stopRecord()
+      // wx.stopRecord()
+      recorderManager.stop()
     } else {
-      wx.startRecord({
-        success: res => {
-          var tempFilePath = res.tempFilePath
-          this.setData({
-            audio: tempFilePath
-          })
-        },
-        fail: function (res) {
-          //录音失败
-          wx.showModal({
-            title: '提示',
-            content: '录音失败',
-          })
-        }
+      console.log(this.data.recordOptions)
+      recorderManager.start({
+        duration: 60000,
+        sampleRate: 16000,
+        numberOfChannels: 1,
+        encodeBitRate: 48000,
+        format: 'mp3',
       })
     }
     this.setData({
