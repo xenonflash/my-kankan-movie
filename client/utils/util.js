@@ -17,32 +17,49 @@ const formatNumber = n => {
 
 // 显示繁忙提示
 var showBusy = text => wx.showToast({
-    title: text,
-    icon: 'loading',
-    duration: 10000
+  title: text,
+  icon: 'loading',
+  duration: 10000
 })
 
 // 显示成功提示
 var showSuccess = text => wx.showToast({
-    title: text,
-    icon: 'success'
+  title: text,
+  icon: 'success'
 })
 
 // 显示失败提示
 var showModel = (title, content) => {
-    wx.hideToast();
+  wx.hideToast();
 
-    wx.showModal({
-        title,
-        content: JSON.stringify(content),
-        showCancel: false
-    })
-}
-var playSound = (url) => {
-  wx.playVoice({
-    filePath: url,
+  wx.showModal({
+    title,
+    content: JSON.stringify(content),
+    showCancel: false
   })
 }
+var playSound = (filePath, onPlay) => {
+  console.log(filePath);
+  const innerAudioContext = wx.createInnerAudioContext();
+  
+  innerAudioContext.src = filePath;
+
+  innerAudioContext.onPlay(() => {
+    onPlay && onPlay()
+  });
+
+  innerAudioContext.onError(err => {
+    console.log(err)
+  });
+
+  innerAudioContext.play();
+}
 
 
-module.exports = { formatTime, showBusy, showSuccess, showModel, playSound }
+module.exports = {
+  formatTime,
+  showBusy,
+  showSuccess,
+  showModel,
+  playSound
+}

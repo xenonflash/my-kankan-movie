@@ -9,7 +9,7 @@
 
       <view class="comment-content">
         <view wx:if="{{detail.type === 'text'}}">{{detail.content}}</view>
-        <button wx:if="{{detail.type === 'audio'}}" bindtap='playSound'>{{detail.audio_length / 100}}s</button>
+        <button wx:if="{{detail.type === 'audio'}}" bindtap='playSound'>{{detail.audio_length / 1000}}s</button>
       </view>
       <view class="btns">
         <button bindtap="addToFav">收藏</button>

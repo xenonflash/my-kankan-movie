@@ -1,6 +1,7 @@
 const app = getApp()
 const favApi = require('../../api/favourite.api.js')
 const commentApi= require('../../api/comment.api.js')
+const { playSound } = require('../../utils/util.js')
 
 // pages/comment-detail/comment-detail.js
 Page({
@@ -29,9 +30,7 @@ Page({
   },
 
   playSound() {
-    wx.playVoice({
-      filePath: this.data.detail.audio_url,
-    })
+    playSound(this.data.detail.audio_url)
   },
   addComment() {
     app.checkSession({

@@ -1,7 +1,9 @@
+
 const config = require('../../config.js')
 const qcloud = require('../../vendor/wafer2-client-sdk/index.js')
 const commentApi = require('../../api/comment.api.js')
 const fileApi =require('../../api/file.api.js')
+const { playSound } = require('../../utils/util.js')
 
 const app = getApp()
 
@@ -57,7 +59,7 @@ Page({
   submit() {
     const { tp } = this.data
     if (tp === 'text') {
-      this.submittextComment()
+      this.submitTextComment()
     } else if(tp === 'audio') {
       this.submitAudioComment()
     }
@@ -74,6 +76,9 @@ Page({
     commentApi.addComment({
       data
     }).then(res => {
+      wx.navigateBack({
+        delta: -2
+      })
       wx.showModal({
         title: '提示',
         content: '提交成功',
@@ -108,7 +113,9 @@ Page({
       }
       return commentApi.addComment({data})
     }).then(res => {
-      console.log(res)
+      wx.navigateBack({
+        delta: -2
+      })
       wx.showToast({
         title: '提交成功',
       })
@@ -125,9 +132,7 @@ Page({
     })
   },
   playAudio() {
-    wx.playVoice({
-      filePath: this.data.audio,
-    })
+    playSound(this.data.audio)
   },
   /**
    * 生命周期函数--监听页面显示
