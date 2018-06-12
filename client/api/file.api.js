@@ -13,9 +13,9 @@ api.upload = ({ filePath, name }) => {
       filePath,
       name,
       success: function (res) {
+        console.log(res)
         if (res.statusCode == 200) {
           util.showSuccess('上传成功')
-          console.log(res)
           res = JSON.parse(res.data)
           resolve(res.data.imgUrl)
         } else {reject(res.data)}

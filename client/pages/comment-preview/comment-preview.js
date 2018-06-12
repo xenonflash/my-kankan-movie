@@ -12,7 +12,13 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    img:'',
+    userInfo:null,
+    movieId : undefined,
+    text :'',
+    tp: '',
+    audio : '',
+    audioLength: 0
   },
 
   /**
@@ -49,12 +55,7 @@ Page({
    */
   onReady: function() {},
   submit() {
-    const {
-      movieId,
-      text,
-      tp,
-      audio
-    } = this.data
+    const { tp } = this.data
     if (tp === 'text') {
       this.submittextComment()
     } else if(tp === 'audio') {
@@ -68,8 +69,7 @@ Page({
     const data = {
       movie_id: movieId,
       text,
-      tp,
-      audio_url: audio
+      tp
     }
     commentApi.addComment({
       data
@@ -89,6 +89,10 @@ Page({
    * 提交音频评论
    */
   submitAudioComment() {
+    const {
+      movieId,
+      tp,
+    } = this.data
    // 声音文件上传先
     const data = {
       filePath: this.data.audio,
@@ -96,19 +100,20 @@ Page({
     }
     
     fileApi.upload(data).then(res => {
-      debugger
       const data = {
         movie_id: movieId,
         tp,
         audio_url: res,
-        audioLendth: this.data.audioLength
+        audio_lendth: this.data.audioLength
       }
       return commentApi.addComment({data})
     }).then(res => {
+      console.log(res)
       wx.showToast({
         title: '提交成功',
       })
     }).catch(err => {
+      console.log(err)
       wx.showToast({
         title: '提交失败',
       })
