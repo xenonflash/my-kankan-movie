@@ -33,14 +33,13 @@ Page({
     })
     recorderManager.onStop((res) => {
       console.log('recorder stop', res)
-      const { tempFilePath } = res
-      let audioLength = 0
-      const match = tempFilePath.match(/durationTime=(\d+)\./)
-      if (match) {
-        audioLength = +match[1]
-      }
+      const { tempFilePath, duration } = res
+      // const match = tempFilePath.match(/durationTime=(\d+)\./)
+      // if (match) {
+      //   audioLength = +match[1]
+      // }
       this.setData({
-        audioLength,
+        audioLength: duration,
         audio:tempFilePath
       })
     })
@@ -51,7 +50,6 @@ Page({
     if (tp === 'text') {
       url += `&text=${text}`
     } else if(tp === 'audio') {
-      // const fAudio = audio.replace(/\./g, '_')
       url +=`&audio=${audio}&audio_length=${audioLength}`
     }
     console.log(url)

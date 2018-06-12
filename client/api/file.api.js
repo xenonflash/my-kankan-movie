@@ -7,23 +7,26 @@ api.upload = ({ filePath, name }) => {
   return new Promise((resolve, reject) => {
     wx.uploadFile({
       header: {
-        'content-type': 'multipart/form-data'
-      },
+        'content-type': 'audio/mp3'
+      }, 
       url: config.service.uploadUrl,
       filePath,
       name,
       success: function (res) {
-        console.log(res)
         if (res.statusCode == 200) {
           util.showSuccess('上传成功')
           res = JSON.parse(res.data)
-          resolve(res.data.imgUrl)
+          if (res.code === 0) {
+            resolve(res.data.imgUrl)
+          } else {
+            reject(res.error)
+          }
         } else {reject(res.data)}
       },
 
       fail: function (e) {
         reject(e)
-        util.showModel('上传图片失败')
+        util.showModel('上传失败')
       }
     })
   })  

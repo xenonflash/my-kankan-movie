@@ -35,9 +35,9 @@ Page({
     } = options
     // 展示userInfo
     const userInfo = app.userInfo
-    if(audio) {
-      audio += `=${audio_length}.mp3`
-    }
+    // if(audio) {
+    //   audio += `=${audio_length}.mp3`
+    // }
     this.setData({
       img,
       userInfo,

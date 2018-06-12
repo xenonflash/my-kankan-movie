@@ -69,12 +69,11 @@ Page({
     const link = e.currentTarget.dataset.name
     const {
       image,
-      type,
       movie_id,
       title
     } = this.data.detail
     wx.navigateTo({
-      url: `/pages/comment-edit/comment-edit?tp=${type}&img=${image}&title=${title}&movieId=${movie_id}`,
+      url: `/pages/comment-edit/comment-edit?tp=${link}&img=${image}&title=${title}&movieId=${movie_id}`,
     })
   },
   addToFav() {
