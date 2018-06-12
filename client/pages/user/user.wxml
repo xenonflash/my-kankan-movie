@@ -16,7 +16,7 @@
         <view class="comment-content">
           <view>{{item.title}}</view>
           <view class="comment-detail">
-            <button wx:if="{{item.type=='audio'}}" bindtap="playSound" data-src="{{item.audio_url}}">{{item.audio_length}}s</button>
+            <button wx:if="{{item.type=='audio'}}" bindtap="playSound" data-src="{{item.audio_url}}">{{item.audio_length / 1000}}s</button>
             <view class="comment-text" wx:if="{{item.type=='text'}}">{{item.content}}</view>
           </view>
           <view>
