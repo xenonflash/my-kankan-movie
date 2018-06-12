@@ -30,7 +30,7 @@ Page({
 
   playSound() {
     wx.playVoice({
-      filePath: this.data.audioUrl,
+      filePath: this.data.detail.audio_url,
     })
   },
   addComment() {

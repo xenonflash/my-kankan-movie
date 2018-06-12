@@ -104,7 +104,7 @@ Page({
         movie_id: movieId,
         tp,
         audio_url: res,
-        audio_lendth: this.data.audioLength
+        audio_length: this.data.audioLength
       }
       return commentApi.addComment({data})
     }).then(res => {
